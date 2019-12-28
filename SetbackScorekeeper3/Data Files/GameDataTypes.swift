@@ -19,7 +19,7 @@ class GameType {
 	
 //	INIT
 	init(team1Name: String, team2Name: String, team3Name: String = "", currentBid: Int = 1) {
-		teamList = [TeamType(name: team1Name, isCurrentBidder: true, team: .team1), TeamType(name: team2Name, team: .team2)]
+		teamList = [TeamType(name: team1Name, team: .team1), TeamType(name: team2Name, team: .team2)]
 		if team3Name != "" {
 			teamList.append(TeamType(name: team3Name, team: .team3))
 		}
@@ -43,6 +43,17 @@ class GameType {
 		}
 		return nameList
 	}
+	func checkForWinner(){
+		for team in teamList {
+			team.isWinner = (team.score >= 11)
+		}
+		let winnerList = teamList.filter({$0.isWinner == true})
+		if winnerList.count > 1 {
+			for team in winnerList {
+				team.isWinner = team.isCurrentBidder
+			}
+		}
+	}
 	
 }
 
@@ -50,12 +61,14 @@ class TeamType {
 	var name: String
 	var score: Int
 	var isCurrentBidder: Bool
+	var isWinner: Bool
 	var team: GameType.Team
-	init(name: String, score: Int = 0, isCurrentBidder: Bool = false, team: GameType.Team) {
+	init(name: String, team: GameType.Team) {
 		self.name = name
-		self.score = score
-		self.isCurrentBidder = isCurrentBidder
+		self.score = 0
+		self.isCurrentBidder = false
 		self.team = team
+		self.isWinner = false
 	}
 	func toggleBidder() {
 		isCurrentBidder = !isCurrentBidder

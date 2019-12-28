@@ -52,10 +52,19 @@ class MainVC: UIViewController {
 	}
 	
 	func updateScoreLabels(from game: GameType){
-		team1ScoreLabel.text = game.teamList[0].score.description
-		team2ScoreLabel.text = game.teamList[1].score.description
+		team1ScoreLabel.text = scoreDisplay(from: game, teamIndex: 0)
+		team2ScoreLabel.text = scoreDisplay(from: game, teamIndex: 1)
 		if game.teamList.count == 3 {
-			team3ScoreLabel.text = game.teamList[2].score.description
+			team3ScoreLabel.text = scoreDisplay(from: game, teamIndex: 2)
+		}
+	}
+
+	func scoreDisplay(from game: GameType, teamIndex: Int)-> String {
+		game.checkForWinner()
+		if game.teamList[teamIndex].isWinner {
+			return "Winner"
+		} else {
+			return game.teamList[teamIndex].score.description
 		}
 	}
 	
@@ -107,6 +116,7 @@ extension MainVC: TeamNameDelegate {
 		currentGame = GameType(team1Name: team1Name, team2Name: team2Name, team3Name: team3Name)
 		updateTeamLabels(from: currentGame!)
 		team3Stack.isHidden = (team3Name == "")
+		currentGame?.selectBidder(at: 0)
 		updateBidderOutlet(from: currentGame!)
 		setupDoneStack.isHidden = (currentGame == nil)
 	}
