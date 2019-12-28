@@ -21,6 +21,17 @@ class MainVC: UIViewController {
 	@IBOutlet weak var team3ScoreLabel: UILabel!
 	
 	@IBOutlet weak var team3Stack: UIStackView!
+	@IBOutlet weak var setupDoneStack: UIStackView!
+	
+	@IBAction func bidSelect(_ sender: UISegmentedControl) {
+		currentGame?.currentBid = sender.selectedSegmentIndex+1
+		print("bid: \(String(describing: currentGame?.currentBid.description))")
+	}
+	
+	@IBOutlet weak var bidderOutlet: UISegmentedControl!
+	@IBAction func bidderSelect(_ sender: UISegmentedControl) {
+	}
+	
 	
 	@IBAction func newGameButton(_ sender: Any) {
 		performSegue(withIdentifier: "ShowTeamNames", sender: self)
@@ -43,12 +54,20 @@ class MainVC: UIViewController {
 		}
 	}
 	
+	func updateBidderOutlet(from game: GameType){
+		bidderOutlet.removeAllSegments()
+		var index = 0
+		while index < (currentGame?.teamList.count)! {
+			bidderOutlet.insertSegment(withTitle: currentGame?.teamList[index].name, at: index, animated: true)
+			index += 1
+		}
+	}
+	
 	override func viewDidLoad() {
         super.viewDidLoad()
 		team3Stack.isHidden = true
-		if (currentGame?.teamList.count ?? 2) > 2 {
-			team3Stack.isHidden = false
-		}
+		setupDoneStack.isHidden = true
+
         // Do any additional setup after loading the view.
     }
     
@@ -60,13 +79,12 @@ class MainVC: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+		print("Segue: \(segue.identifier?.description)")
 		switch segue.identifier {
 		case "ShowTeamNames":
 			let vc = segue.destination as! TeamNamesVC
 			vc.delegate = self
 			vc.names = currentGame?.teamNames()
-			
-			print("show team names")
 		default:
 			print("Missing proper segue identifier")
 		}
@@ -80,6 +98,8 @@ extension MainVC: TeamNameDelegate {
 		currentGame = GameType(team1Name: team1Name, team2Name: team2Name, team3Name: team3Name)
 		updateTeamLabels(from: currentGame!)
 		team3Stack.isHidden = (team3Name == "")
+		updateBidderOutlet(from: currentGame!)
+		setupDoneStack.isHidden = (currentGame == nil)
 	}
 	
 	
