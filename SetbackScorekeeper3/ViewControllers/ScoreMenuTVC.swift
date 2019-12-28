@@ -8,7 +8,7 @@
 
 import UIKit
 protocol ScoreMenuDelegate {
-	func scoreMenuDelegate(_ round: RoundMenu)
+	func scoreMenuDelegateNewRound(_ round: RoundMenu)
 }
 class ScoreMenuTVC: UITableViewController {
 
@@ -22,7 +22,7 @@ class ScoreMenuTVC: UITableViewController {
 		roundMenu.resetSelections()
     }
 	override func viewWillDisappear(_ animated: Bool) {
-		delegate?.scoreMenuDelegate(roundMenu)
+		delegate?.scoreMenuDelegateNewRound(roundMenu)
 	}
 
 	

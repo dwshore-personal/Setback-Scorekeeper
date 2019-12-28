@@ -45,7 +45,7 @@ class PointList {
 
 class RoundMenu {
 	var pointList = [PointList.init().list, PointList.init().list, PointList.init().list]
-	var teamScores: [Int] = [0,0,0]
+	var teamScores: [Float] = [0,0,0]
 	
 	func pointMenu(for section: Int) -> [PointType]{
 		return pointList[section]
@@ -105,7 +105,7 @@ class RoundMenu {
 	
 	func teamScoreForRound(at section: Int){
 		let teamPointList = pointList[section]
-		let score = teamPointList.filter {$0.isSelected == true}.count
+		let score = Float(teamPointList.filter {$0.isSelected == true}.count)
 		if teamPointList.last!.isSelected {
 			teamScores[section] = 22
 		} else {

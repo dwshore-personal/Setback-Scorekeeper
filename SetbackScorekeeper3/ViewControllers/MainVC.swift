@@ -117,7 +117,7 @@ class MainVC: UIViewController {
 }
 
 extension MainVC: TeamNameDelegate {
-	func teamNameDelegate(team1Name: String, team2Name: String, team3Name: String) {
+	func teamNameDelegateUpdateNames(team1Name: String, team2Name: String, team3Name: String) {
 		currentGame = GameType(team1Name: team1Name, team2Name: team2Name, team3Name: team3Name)
 		updateTeamLabels(from: currentGame!)
 		team3Stack.isHidden = (team3Name == "")
@@ -129,7 +129,7 @@ extension MainVC: TeamNameDelegate {
 }
 
 extension MainVC: ScoreMenuDelegate {
-	func scoreMenuDelegate(_ round: RoundMenu) {
+	func scoreMenuDelegateNewRound(_ round: RoundMenu) {
 		for player in currentGame!.teamList {
 			currentGame?.teamList[player.team.rawValue].score = round.teamScores[player.team.rawValue]
 		}

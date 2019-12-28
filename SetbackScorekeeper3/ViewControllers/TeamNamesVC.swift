@@ -8,7 +8,7 @@
 
 import UIKit
 protocol TeamNameDelegate {
-	func teamNameDelegate(team1Name: String, team2Name: String, team3Name: String)
+	func teamNameDelegateUpdateNames(team1Name: String, team2Name: String, team3Name: String)
 }
 class TeamNamesVC: UIViewController {
 	
@@ -22,7 +22,7 @@ class TeamNamesVC: UIViewController {
 	
 	@IBOutlet weak var doneButton: UIButton!
 	@IBAction func doneAction(_ sender: UIButton) {
-		delegate?.teamNameDelegate(team1Name: team1TextField.text!, team2Name: team2TextField.text!, team3Name: team3TextField.text!)
+		delegate?.teamNameDelegateUpdateNames(team1Name: team1TextField.text!, team2Name: team2TextField.text!, team3Name: team3TextField.text!)
 		dismiss(animated: true)
 	}
 	

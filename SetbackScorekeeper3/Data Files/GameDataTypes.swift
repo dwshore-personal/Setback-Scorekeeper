@@ -27,7 +27,7 @@ class GameType {
 	}
 	
 //	FUNCTIONS
-	func updateScore(for team: Team, with score: Int){
+	func updateScore(for team: Team, with score: Float){
 		teamList[team.rawValue].score += score
 	}
 	func selectBidder(at index: Int){
@@ -59,7 +59,7 @@ class GameType {
 
 class TeamType {
 	var name: String
-	var score: Int
+	var score: Float
 	var isCurrentBidder: Bool
 	var isWinner: Bool
 	var team: GameType.Team
