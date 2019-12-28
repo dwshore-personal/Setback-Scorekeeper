@@ -33,12 +33,12 @@ class PointList {
 		PointType(name: "Shot the moon")
 		]
 	}
-	func toggleSelection(at index: Int){
-		list[index].toggleSelection()
-		if list.last?.isSelected == true && (list.filter { $0.isSelected == true }.count > 5 ) {
-			list.last?.isSelected = false
-		}
-	}
+//	func toggleSelection(at index: Int){
+//		list[index].toggleSelection()
+//		if list.last?.isSelected == true && (list.filter { $0.isSelected == true }.count > 5 ) {
+//			list.last?.isSelected = false
+//		}
+//	}
 
 }
 
@@ -55,53 +55,50 @@ class RoundMenu {
 		return pointList[indexPath.section][indexPath.row]
 	}
 	func checkTheMoon() {
-		for list in pointList {
-			if list.last!.isSelected && !(list.filter {$0.isSelected == true}.count > 5) {
-				list.last!.isSelected = false
-			}
+		var index = 0
+		while index < pointList.count {
+				if pointList[index].last!.isSelected && !(pointList[index].filter {$0.isSelected == true}.count > 5) {
+					pointList[index].last!.isSelected = false
+				}
+			index += 1
 		}
 	}
+	
+	func shootTheMoon(for team: Int){
+		var index = 0
+		while index < pointList.count {
+			if index == team {
+				if pointList[team].last!.isSelected{
+						for item in pointList[team]{
+						item.isSelected = true
+					}
+				}
+			} else {
+				for item in pointList[index]{
+					item.isSelected = false
+				}
+			}
+			index += 1
+		}
+	}
+	
 	func select(pointAt indexPath: IndexPath){
 		let team = indexPath.section
 		let point = indexPath.row
 		let selectedPoint = pointList[team][point]
+		selectedPoint.toggleSelection()
 		if point == 5 {
-			for list in pointList {
-				for item in list {
-					item.isSelected = false
-				}
-			}
-			for item in pointList[team] {
-				item.isSelected = true
+			if selectedPoint.isSelected{
+				shootTheMoon(for: team)
 			}
 		} else {
-			selectedPoint.toggleSelection()
-			var index = 0
-			while index < pointList.count {
-				if index != team {
-					pointList[index][point].isSelected = false
+			var teamIndex = 0
+			while teamIndex < pointList.count {
+				if teamIndex != team {
+					pointList[teamIndex][point].isSelected = false
 				}
-				index += 1
+				teamIndex += 1
 			}
-			/*
-			switch team {
-			case 0:
-				pointList[1][point].isSelected = false
-				pointList[2][point].isSelected = false
-				pointList[1].last!.isSelected = false
-				pointList[2].last!.isSelected = false
-			case 1:
-				pointList[0][point].isSelected = false
-				pointList[2][point].isSelected = false
-				pointList[0].last!.isSelected = false
-				pointList[2].last!.isSelected = false
-			default:
-				pointList[1][point].isSelected = false
-				pointList[0][point].isSelected = false
-				pointList[1].last!.isSelected = false
-				pointList[0].last!.isSelected = false
-			}
-			*/
 		}
 		checkTheMoon()
 	}
