@@ -12,7 +12,10 @@
 		0273B9B123B6AC36006DB53E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0273B9B023B6AC36006DB53E /* ViewController.swift */; };
 		0273B9B423B6AC36006DB53E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0273B9B223B6AC36006DB53E /* Main.storyboard */; };
 		0273B9B623B6AC4D006DB53E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0273B9B523B6AC4D006DB53E /* Assets.xcassets */; };
-		0273B9B923B6AC4D006DB53E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0273B9B723B6AC4D006DB53E /* LaunchScreen.storyboard */; };
+		0273B9C223B6AD07006DB53E /* GameDataTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0273B9C123B6AD07006DB53E /* GameDataTypes.swift */; };
+		0273B9C523B6B5E4006DB53E /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0273B9C423B6B5E4006DB53E /* MainVC.swift */; };
+		0273B9C823B6B6FA006DB53E /* TeamNamesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0273B9C723B6B6FA006DB53E /* TeamNamesVC.swift */; };
+		0273B9CA23B6B72C006DB53E /* ScoreMenuTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0273B9C923B6B72C006DB53E /* ScoreMenuTVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,8 +25,11 @@
 		0273B9B023B6AC36006DB53E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0273B9B323B6AC36006DB53E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0273B9B523B6AC4D006DB53E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		0273B9B823B6AC4D006DB53E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0273B9BA23B6AC4D006DB53E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0273B9C123B6AD07006DB53E /* GameDataTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDataTypes.swift; sourceTree = "<group>"; };
+		0273B9C423B6B5E4006DB53E /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
+		0273B9C723B6B6FA006DB53E /* TeamNamesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamNamesVC.swift; sourceTree = "<group>"; };
+		0273B9C923B6B72C006DB53E /* ScoreMenuTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreMenuTVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +62,42 @@
 		0273B9AB23B6AC36006DB53E /* SetbackScorekeeper3 */ = {
 			isa = PBXGroup;
 			children = (
+				0273B9C623B6B5EB006DB53E /* ViewControllers */,
+				0273B9C023B6ACA6006DB53E /* Storyboards */,
+				0273B9C323B6AD0B006DB53E /* Data Files */,
 				0273B9AC23B6AC36006DB53E /* AppDelegate.swift */,
 				0273B9AE23B6AC36006DB53E /* SceneDelegate.swift */,
 				0273B9B023B6AC36006DB53E /* ViewController.swift */,
-				0273B9B223B6AC36006DB53E /* Main.storyboard */,
 				0273B9B523B6AC4D006DB53E /* Assets.xcassets */,
-				0273B9B723B6AC4D006DB53E /* LaunchScreen.storyboard */,
 				0273B9BA23B6AC4D006DB53E /* Info.plist */,
 			);
 			path = SetbackScorekeeper3;
+			sourceTree = "<group>";
+		};
+		0273B9C023B6ACA6006DB53E /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				0273B9B223B6AC36006DB53E /* Main.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		0273B9C323B6AD0B006DB53E /* Data Files */ = {
+			isa = PBXGroup;
+			children = (
+				0273B9C123B6AD07006DB53E /* GameDataTypes.swift */,
+			);
+			path = "Data Files";
+			sourceTree = "<group>";
+		};
+		0273B9C623B6B5EB006DB53E /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				0273B9C923B6B72C006DB53E /* ScoreMenuTVC.swift */,
+				0273B9C723B6B6FA006DB53E /* TeamNamesVC.swift */,
+				0273B9C423B6B5E4006DB53E /* MainVC.swift */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -125,7 +158,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0273B9B923B6AC4D006DB53E /* LaunchScreen.storyboard in Resources */,
 				0273B9B623B6AC4D006DB53E /* Assets.xcassets in Resources */,
 				0273B9B423B6AC36006DB53E /* Main.storyboard in Resources */,
 			);
@@ -138,9 +170,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0273B9CA23B6B72C006DB53E /* ScoreMenuTVC.swift in Sources */,
 				0273B9B123B6AC36006DB53E /* ViewController.swift in Sources */,
+				0273B9C523B6B5E4006DB53E /* MainVC.swift in Sources */,
+				0273B9C823B6B6FA006DB53E /* TeamNamesVC.swift in Sources */,
 				0273B9AD23B6AC36006DB53E /* AppDelegate.swift in Sources */,
 				0273B9AF23B6AC36006DB53E /* SceneDelegate.swift in Sources */,
+				0273B9C223B6AD07006DB53E /* GameDataTypes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -153,14 +189,6 @@
 				0273B9B323B6AC36006DB53E /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		0273B9B723B6AC4D006DB53E /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				0273B9B823B6AC4D006DB53E /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -291,6 +319,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.lux.SetbackScorekeeper3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -309,6 +338,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.lux.SetbackScorekeeper3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
