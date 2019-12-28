@@ -38,7 +38,11 @@ class TeamNamesVC: UIViewController {
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
-		doneButton.isEnabled = false
+		if names == nil {
+			doneButton.isEnabled = false
+		} else {
+			doneButton.isEnabled = true
+		}
 		if let filler = names {
 			team1TextField.text = filler[0]
 			team2TextField.text = filler[1]

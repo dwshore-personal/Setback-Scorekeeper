@@ -10,20 +10,23 @@ import Foundation
 class GameType {
 	var teamList: [TeamType]
 	var currentBid: Int
-	var currentBidder: Team
+	var currentBidder: Team {
+		teamList.filter {$0.isCurrentBidder == true}.first!.team
+	}
 	enum Team: Int, CaseIterable {
 		case team1, team2, team3
 	}
 	
+//	INIT
 	init(team1Name: String, team2Name: String, team3Name: String = "", currentBid: Int = 1) {
-		teamList = [TeamType(name: team1Name), TeamType(name: team2Name)]
+		teamList = [TeamType(name: team1Name, isCurrentBidder: true, team: .team1), TeamType(name: team2Name, team: .team2)]
 		if team3Name != "" {
-			teamList.append(TeamType(name: team3Name))
+			teamList.append(TeamType(name: team3Name, team: .team3))
 		}
 		self.currentBid = currentBid
-		currentBidder = .team1
 	}
 	
+//	FUNCTIONS
 	func updateScore(for team: Team, with score: Int){
 		teamList[team.rawValue].score += score
 	}
@@ -32,7 +35,6 @@ class GameType {
 			team.isCurrentBidder = false
 		}
 		teamList[index].toggleBidder()
-		currentBidder = Team(rawValue: index)!
 	}
 	func teamNames() -> [String]{
 		var nameList: [String] = []
@@ -48,10 +50,12 @@ class TeamType {
 	var name: String
 	var score: Int
 	var isCurrentBidder: Bool
-	init(name: String, score: Int = 0, isCurrentBidder: Bool = false) {
+	var team: GameType.Team
+	init(name: String, score: Int = 0, isCurrentBidder: Bool = false, team: GameType.Team) {
 		self.name = name
 		self.score = score
 		self.isCurrentBidder = isCurrentBidder
+		self.team = team
 	}
 	func toggleBidder() {
 		isCurrentBidder = !isCurrentBidder
@@ -59,79 +63,8 @@ class TeamType {
 }
 
 
-class PointType {
-	var name: String
-	var isSelected: Bool = false
-	init(name: String, isSelected: Bool = false) {
-		self.name = name
-		self.isSelected = isSelected
-	}
-	func toggleSelection(){
-		isSelected = !isSelected
-	}
-}
 
-class PointList {
-	var list: [PointType]
-	init() {
-		self.list = [
-		PointType(name: "High"),
-		PointType(name: "Low"),
-		PointType(name: "Jack"),
-		PointType(name: "Joker"),
-		PointType(name: "Game"),
-		PointType(name: "Shot the moon")
-		]
-	}
-	func toggleSelection(at index: Int){
-		list[index].toggleSelection()
-	}
-}
 
-class Round {
-	var pointList = [PointList.init().list, PointList.init().list, PointList.init().list]
-	var teamScores: [Int] = [0,0,0]
-	
-	func pointMenu(for section: Int) -> [PointType]{
-		return pointList[section]
-	}
-	
-	func cellData(indexPath: IndexPath) -> PointType {
-		return pointList[indexPath.section][indexPath.row]
-	}
-	
-	func select(pointAt indexPath: IndexPath){
-		let team = indexPath.section
-		let point = indexPath.row
-		pointList[team][point].toggleSelection()
-		switch team {
-		case 0:
-			pointList[1][point].isSelected = false
-			pointList[2][point].isSelected = false
-		case 1:
-			pointList[0][point].isSelected = false
-			pointList[2][point].isSelected = false
-		default:
-			pointList[1][point].isSelected = false
-			pointList[0][point].isSelected = false
-		}
-	}
-	
-	func teamScoreForRound(at section: Int){
-		let teamPointList = pointList[section]
-		let score = teamPointList.filter {$0.isSelected == true}.count
-		if teamPointList.last!.isSelected {
-			teamScores[section] = 22
-		} else {
-			teamScores[section] = score
-		}
-	}
-	
-	func resetSelections() {
-		for team in pointList {
-			for item in team {
-				item.isSelected = false
-			}
-		}
-	}
-}
+
+
+

@@ -32,7 +32,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="mJf-zN-LPU">
-                                <rect key="frame" x="20" y="183" width="374" height="324"/>
+                                <rect key="frame" x="20" y="183" width="374" height="414"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="61" translatesAutoresizingMaskIntoConstraints="NO" id="J6e-cD-xtj">
                                         <rect key="frame" x="43" y="0.0" width="288" height="61"/>
@@ -91,7 +91,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="l8o-Gn-oWb">
-                                        <rect key="frame" x="60" y="121" width="254" height="203"/>
+                                        <rect key="frame" x="60" y="121" width="254" height="293"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="m9X-PQ-3IG">
                                                 <rect key="frame" x="0.0" y="0.0" width="254" height="71.5"/>
@@ -128,22 +128,25 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" apportionsSegmentWidthsByContent="YES" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Gic-fD-ZfR">
-                                                        <rect key="frame" x="0.0" y="40.5" width="254" height="32"/>
+                                                        <rect key="frame" x="87" y="40.5" width="80" height="32"/>
                                                         <segments>
                                                             <segment title="1"/>
                                                             <segment title="2"/>
                                                             <segment title="3"/>
-                                                            <segment title="4"/>
-                                                            <segment title="5"/>
-                                                            <segment title="Shoot the Moon"/>
                                                         </segments>
                                                         <connections>
-                                                            <action selector="bidSelect:" destination="gac-s1-Iuq" eventType="valueChanged" id="pIh-CV-iqQ"/>
                                                             <action selector="bidderSelect:" destination="gac-s1-Iuq" eventType="valueChanged" id="7Vd-Ds-SnB"/>
                                                         </connections>
                                                     </segmentedControl>
                                                 </subviews>
                                             </stackView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GMa-oP-s47">
+                                                <rect key="frame" x="0.0" y="263" width="254" height="30"/>
+                                                <state key="normal" title="Score Round"/>
+                                                <connections>
+                                                    <action selector="scoreRound:" destination="gac-s1-Iuq" eventType="touchUpInside" id="Q4z-Rm-asj"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                     </stackView>
                                 </subviews>
@@ -310,7 +313,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="6XL-sy-xZP">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="scoreCell" id="6XL-sy-xZP">
                                 <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6XL-sy-xZP" id="xZs-yp-mZd">

@@ -30,6 +30,8 @@ class MainVC: UIViewController {
 	
 	@IBOutlet weak var bidderOutlet: UISegmentedControl!
 	@IBAction func bidderSelect(_ sender: UISegmentedControl) {
+		let index = bidderOutlet.selectedSegmentIndex
+		currentGame?.selectBidder(at: index)
 	}
 	
 	
@@ -37,6 +39,9 @@ class MainVC: UIViewController {
 		performSegue(withIdentifier: "ShowTeamNames", sender: self)
 	}
 	
+	@IBAction func scoreRound(_ sender: UIButton) {
+		performSegue(withIdentifier: "ShowScoreMenu", sender: self)
+	}
 	
 	func updateTeamLabels(from game: GameType){
 		team1NameLabel.text = game.teamList[0].name
@@ -61,13 +66,13 @@ class MainVC: UIViewController {
 			bidderOutlet.insertSegment(withTitle: currentGame?.teamList[index].name, at: index, animated: true)
 			index += 1
 		}
+		bidderOutlet.selectedSegmentIndex = 0
 	}
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
 		team3Stack.isHidden = true
 		setupDoneStack.isHidden = true
-
         // Do any additional setup after loading the view.
     }
     
@@ -79,12 +84,16 @@ class MainVC: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
-		print("Segue: \(segue.identifier?.description)")
+		print("Segue: \(String(describing: segue.identifier?.description))")
 		switch segue.identifier {
 		case "ShowTeamNames":
 			let vc = segue.destination as! TeamNamesVC
 			vc.delegate = self
 			vc.names = currentGame?.teamNames()
+		case "ShowScoreMenu":
+			let vc = segue.destination as! ScoreMenuTVC
+			vc.delegate = self
+			vc.currentGame = currentGame
 		default:
 			print("Missing proper segue identifier")
 		}
@@ -100,6 +109,15 @@ extension MainVC: TeamNameDelegate {
 		team3Stack.isHidden = (team3Name == "")
 		updateBidderOutlet(from: currentGame!)
 		setupDoneStack.isHidden = (currentGame == nil)
+	}
+}
+
+extension MainVC: ScoreMenuDelegate {
+	func scoreMenuDelegate(_ round: RoundMenu) {
+		for player in currentGame!.teamList {
+			currentGame?.teamList[player.team.rawValue].score = round.teamScores[player.team.rawValue]
+		}
+		updateScoreLabels(from: currentGame!)
 	}
 	
 	

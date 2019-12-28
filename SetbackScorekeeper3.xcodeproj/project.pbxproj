@@ -16,6 +16,7 @@
 		0273B9C523B6B5E4006DB53E /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0273B9C423B6B5E4006DB53E /* MainVC.swift */; };
 		0273B9C823B6B6FA006DB53E /* TeamNamesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0273B9C723B6B6FA006DB53E /* TeamNamesVC.swift */; };
 		0273B9CA23B6B72C006DB53E /* ScoreMenuTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0273B9C923B6B72C006DB53E /* ScoreMenuTVC.swift */; };
+		029065BC23B7F05600D03104 /* ScoreDataTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029065BB23B7F05600D03104 /* ScoreDataTypes.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		0273B9C423B6B5E4006DB53E /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		0273B9C723B6B6FA006DB53E /* TeamNamesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamNamesVC.swift; sourceTree = "<group>"; };
 		0273B9C923B6B72C006DB53E /* ScoreMenuTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreMenuTVC.swift; sourceTree = "<group>"; };
+		029065BB23B7F05600D03104 /* ScoreDataTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreDataTypes.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				0273B9C123B6AD07006DB53E /* GameDataTypes.swift */,
+				029065BB23B7F05600D03104 /* ScoreDataTypes.swift */,
 			);
 			path = "Data Files";
 			sourceTree = "<group>";
@@ -93,9 +96,9 @@
 		0273B9C623B6B5EB006DB53E /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				0273B9C423B6B5E4006DB53E /* MainVC.swift */,
 				0273B9C923B6B72C006DB53E /* ScoreMenuTVC.swift */,
 				0273B9C723B6B6FA006DB53E /* TeamNamesVC.swift */,
-				0273B9C423B6B5E4006DB53E /* MainVC.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -172,6 +175,7 @@
 			files = (
 				0273B9CA23B6B72C006DB53E /* ScoreMenuTVC.swift in Sources */,
 				0273B9B123B6AC36006DB53E /* ViewController.swift in Sources */,
+				029065BC23B7F05600D03104 /* ScoreDataTypes.swift in Sources */,
 				0273B9C523B6B5E4006DB53E /* MainVC.swift in Sources */,
 				0273B9C823B6B6FA006DB53E /* TeamNamesVC.swift in Sources */,
 				0273B9AD23B6AC36006DB53E /* AppDelegate.swift in Sources */,
