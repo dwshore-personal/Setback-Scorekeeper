@@ -52,20 +52,25 @@ class MainVC: UIViewController {
 	}
 	
 	func updateScoreLabels(from game: GameType){
-		team1ScoreLabel.text = scoreDisplay(from: game, teamIndex: 0)
-		team2ScoreLabel.text = scoreDisplay(from: game, teamIndex: 1)
+		configureScoreDisplay(team1ScoreLabel, from: game, teamIndex: 0)
+		configureScoreDisplay(team2ScoreLabel, from: game, teamIndex: 1)
 		if game.teamList.count == 3 {
-			team3ScoreLabel.text = scoreDisplay(from: game, teamIndex: 2)
+			configureScoreDisplay(team3ScoreLabel, from: game, teamIndex: 2)
 		}
 	}
 
-	func scoreDisplay(from game: GameType, teamIndex: Int)-> String {
+	func configureScoreDisplay(_ label: UILabel, from game: GameType, teamIndex: Int) {
 		game.checkForWinner()
-		if game.teamList[teamIndex].isWinner {
-			return "Winner"
-		} else {
-			return game.teamList[teamIndex].score.description
+		var description: String {
+			if game.teamList[teamIndex].isWinner {
+				label.textColor = .red
+				return "Winner"
+			} else {
+				label.textColor = .black
+				return game.teamList[teamIndex].score.description
+			}
 		}
+		label.text = description
 	}
 	
 	func updateBidderOutlet(from game: GameType){
@@ -119,6 +124,7 @@ extension MainVC: TeamNameDelegate {
 		currentGame?.selectBidder(at: 0)
 		updateBidderOutlet(from: currentGame!)
 		setupDoneStack.isHidden = (currentGame == nil)
+		updateScoreLabels(from: currentGame!)
 	}
 }
 
