@@ -32,7 +32,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="mJf-zN-LPU">
-                                <rect key="frame" x="20" y="183" width="374" height="414"/>
+                                <rect key="frame" x="20" y="183" width="374" height="504"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="61" translatesAutoresizingMaskIntoConstraints="NO" id="J6e-cD-xtj">
                                         <rect key="frame" x="43" y="0.0" width="288" height="61"/>
@@ -149,6 +149,13 @@
                                             </button>
                                         </subviews>
                                     </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pJn-HY-mbS">
+                                        <rect key="frame" x="149.5" y="474" width="75" height="30"/>
+                                        <state key="normal" title="New Game"/>
+                                        <connections>
+                                            <action selector="newGameButton:" destination="gac-s1-Iuq" eventType="touchUpInside" id="nZd-CZ-WOm"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -164,12 +171,14 @@
                     <navigationItem key="navigationItem" id="EDY-mE-EJC">
                         <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="NTJ-fX-JHP">
                             <connections>
-                                <action selector="newGameButton:" destination="gac-s1-Iuq" id="UaX-Gg-af6"/>
+                                <action selector="menuButton:" destination="gac-s1-Iuq" id="Dnt-Ui-H1q"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="bidderOutlet" destination="Gic-fD-ZfR" id="cXT-Ta-cfP"/>
+                        <outlet property="newGameOutlet" destination="pJn-HY-mbS" id="pdI-Ov-Lvc"/>
+                        <outlet property="scoreRoundOutlet" destination="GMa-oP-s47" id="h0m-RA-kjM"/>
                         <outlet property="setupDoneStack" destination="l8o-Gn-oWb" id="92r-4o-3qn"/>
                         <outlet property="team1NameLabel" destination="Fzg-fh-LoU" id="Mbf-u2-AQs"/>
                         <outlet property="team1ScoreLabel" destination="qjs-FW-u6g" id="Gev-HO-HmO"/>

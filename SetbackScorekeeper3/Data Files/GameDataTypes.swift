@@ -11,12 +11,18 @@ class GameType {
 	var teamList: [TeamType]
 	var currentBid: Int
 	var currentBidder: Team {
-		teamList.filter {$0.isCurrentBidder == true}.first!.team
+		return teamList.filter {$0.isCurrentBidder == true}.first!.team
 	}
 	enum Team: Int, CaseIterable {
 		case team1, team2, team3
 	}
-	
+	var currentWinner: Team? {
+		if (teamList.filter {$0.isWinner == true}.count > 0) {
+			return teamList.filter {$0.isWinner == true}.first!.team
+		} else {
+			return nil
+		}
+	}
 //	INIT
 	init(team1Name: String, team2Name: String, team3Name: String = "", currentBid: Int = 1) {
 		teamList = [TeamType(name: team1Name, team: .team1), TeamType(name: team2Name, team: .team2)]
@@ -27,7 +33,7 @@ class GameType {
 	}
 	
 //	FUNCTIONS
-	func updateScore(for team: Team, with score: Float){
+	func updateScore(for team: Team, with score: Int){
 		teamList[team.rawValue].score += score
 	}
 	func selectBidder(at index: Int){
@@ -59,7 +65,7 @@ class GameType {
 
 class TeamType {
 	var name: String
-	var score: Float
+	var score: Int
 	var isCurrentBidder: Bool
 	var isWinner: Bool
 	var team: GameType.Team

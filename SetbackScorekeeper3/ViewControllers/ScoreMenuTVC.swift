@@ -29,7 +29,7 @@ class ScoreMenuTVC: UITableViewController {
 //	MARK: - FUNCTIONS
 	func updateScores() {
 		for section in currentGame!.teamList {
-			roundMenu.teamScoreForRound(at: section.team.rawValue)
+			roundMenu.teamScoreForRound(at: section.team.rawValue, bidder: (currentGame?.currentBidder.rawValue)!, bid: currentGame!.currentBid)
 		}
 	}
 	
@@ -53,6 +53,9 @@ class ScoreMenuTVC: UITableViewController {
 		}
 		print(header)
 		return header
+	}
+	func compareScoreToBid(score: Int, bid: Int){
+		
 	}
 	
     // MARK: - Table view data source

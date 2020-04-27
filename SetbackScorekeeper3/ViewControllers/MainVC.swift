@@ -22,27 +22,37 @@ class MainVC: UIViewController {
 	
 	@IBOutlet weak var team3Stack: UIStackView!
 	@IBOutlet weak var setupDoneStack: UIStackView!
+	@IBOutlet weak var bidderOutlet: UISegmentedControl!
+	@IBOutlet weak var scoreRoundOutlet: UIButton!
+	@IBOutlet weak var newGameOutlet: UIButton!
 	
+	
+//	MARK: - ACTION OUTLETS
 	@IBAction func bidSelect(_ sender: UISegmentedControl) {
 		currentGame?.currentBid = sender.selectedSegmentIndex+1
 		print("bid: \(String(describing: currentGame?.currentBid.description))")
 	}
 	
-	@IBOutlet weak var bidderOutlet: UISegmentedControl!
 	@IBAction func bidderSelect(_ sender: UISegmentedControl) {
 		let index = bidderOutlet.selectedSegmentIndex
 		currentGame?.selectBidder(at: index)
 	}
 	
 	
-	@IBAction func newGameButton(_ sender: Any) {
+	@IBAction func menuButton(_ sender: Any) {
 		performSegue(withIdentifier: "ShowTeamNames", sender: self)
 	}
 	
 	@IBAction func scoreRound(_ sender: UIButton) {
 		performSegue(withIdentifier: "ShowScoreMenu", sender: self)
 	}
+	@IBAction func newGameButton(_ sender: UIButton) {
+		currentGame = nil
+		performSegue(withIdentifier: "ShowTeamNames", sender: self)
+		scoreRoundOutlet.isEnabled = true
+	}
 	
+//	MARK: - FUNCTIONS
 	func updateTeamLabels(from game: GameType){
 		team1NameLabel.text = game.teamList[0].name
 		team2NameLabel.text = game.teamList[1].name
@@ -61,14 +71,20 @@ class MainVC: UIViewController {
 
 	func configureScoreDisplay(_ label: UILabel, from game: GameType, teamIndex: Int) {
 		game.checkForWinner()
+		let score = game.teamList[teamIndex].score
 		var description: String {
 			if game.teamList[teamIndex].isWinner {
 				label.textColor = .red
+				scoreRoundOutlet.isEnabled = false
 				return "Winner"
-			} else {
+			} else if score >= 0 {
 				label.textColor = .black
-				return game.teamList[teamIndex].score.description
+				return score.description
+			} else {
+				label.textColor = .red
+				return score.description
 			}
+			
 		}
 		label.text = description
 	}
@@ -131,9 +147,12 @@ extension MainVC: TeamNameDelegate {
 extension MainVC: ScoreMenuDelegate {
 	func scoreMenuDelegateNewRound(_ round: RoundMenu) {
 		for player in currentGame!.teamList {
-			currentGame?.teamList[player.team.rawValue].score = round.teamScores[player.team.rawValue]
+			currentGame?.teamList[player.team.rawValue].score += round.teamScores[player.team.rawValue]
 		}
 		updateScoreLabels(from: currentGame!)
+//		if currentGame?.currentWinner != nil {
+//			print("someone won!")
+//		}
 	}
 	
 	

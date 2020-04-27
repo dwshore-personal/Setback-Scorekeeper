@@ -33,19 +33,13 @@ class PointList {
 		PointType(name: "Shot the moon")
 		]
 	}
-//	func toggleSelection(at index: Int){
-//		list[index].toggleSelection()
-//		if list.last?.isSelected == true && (list.filter { $0.isSelected == true }.count > 5 ) {
-//			list.last?.isSelected = false
-//		}
-//	}
 
 }
 
 
 class RoundMenu {
 	var pointList = [PointList.init().list, PointList.init().list, PointList.init().list]
-	var teamScores: [Float] = [0,0,0]
+	var teamScores: [Int] = [0,0,0]
 	
 	func pointMenu(for section: Int) -> [PointType]{
 		return pointList[section]
@@ -103,13 +97,17 @@ class RoundMenu {
 		checkTheMoon()
 	}
 	
-	func teamScoreForRound(at section: Int){
+	func teamScoreForRound(at section: Int, bidder: Int, bid: Int){
 		let teamPointList = pointList[section]
-		let score = Float(teamPointList.filter {$0.isSelected == true}.count)
+		let score = teamPointList.filter {$0.isSelected == true}.count
 		if teamPointList.last!.isSelected {
 			teamScores[section] = 22
 		} else {
-			teamScores[section] = score
+			if section == bidder && (score < bid){
+				teamScores[section] = 0-bid
+			} else {
+				teamScores[section] = score
+			}
 		}
 	}
 	
